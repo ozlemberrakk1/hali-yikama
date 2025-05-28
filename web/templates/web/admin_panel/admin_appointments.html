@@ -1,0 +1,30 @@
+{% extends 'web/base_admin.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Randevular</h2>
+    <table class="table table-bordered mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>İsim</th>
+                <th>Email</th>
+                <th>Telefon</th>
+                <th>Randevu Tarihi</th>
+                <th>Takip Kodu</th>
+                <th>Sipariş No</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appt in appointments %}
+            <tr>
+                <td>{{ appt.full_name }}</td>
+                <td>{{ appt.email }}</td>
+                <td>{{ appt.phone }}</td>
+                <td>{{ appt.appointment_date }}</td>
+                <td>{{ appt.takip_kodu }}</td>
+                <td>{{ appt.order_number }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halı Takip</title>
+</head>
+<body>
+    <h1>Halı Takip Sistemi</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="takip_kodu">Takip Kodu:</label>
+        <input type="text" id="takip_kodu" name="takip_kodu" required>
+        <button type="submit">Sorgula</button>
+    </form>
+</body>
+</html>

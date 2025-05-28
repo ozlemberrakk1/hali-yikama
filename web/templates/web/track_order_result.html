@@ -1,0 +1,49 @@
+{% extends 'web/base.html' %}
+
+{% block title %}Sipariş Sonucu{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-white">
+    <div class="container">
+        {% if not_found %}
+            <div class="alert alert-danger text-center">
+                Takip koduna ait sipariş bulunamadı.
+            </div>
+        {% else %}
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">📦 Halı Durumu</h2>
+            </div>
+
+            <div class="card p-4 shadow rounded col-md-6 mx-auto">
+                <ul class="list-group">
+                    <li class="list-group-item"><strong>Takip Kodu:</strong> {{ carpet.takip_kodu }}</li>
+                    <li class="list-group-item"><strong>Durum:</strong> 
+                        {% if carpet.status == "received" %}
+                            Alındı
+                        {% elif carpet.status == "being-Washed" %}
+                            Yıkamada
+                        {% elif carpet.status == "ready" %}
+                            Hazır
+                        {% elif carpet.status == "cleaned" %}
+                            Temizlendi
+                        {% elif carpet.status == "delivered" %}
+                            Teslim Edildi
+                        {% else %}
+                            Bilinmiyor
+                        {% endif %}
+                    </li>
+                    <li class="list-group-item"><strong>Alınma Tarihi:</strong> {{ carpet.date_received }}</li>
+                    {% if carpet.date_delivered %}
+                        <li class="list-group-item"><strong>Teslim Tarihi:</strong> {{ carpet.date_delivered }}</li>
+                    {% endif %}
+                    <li class="list-group-item"><strong>Müşteri:</strong> {{ appointment.full_name }}</li>
+                    <li class="list-group-item"><strong>E-posta:</strong> {{ appointment.email|default:"-" }}</li>
+                    <li class="list-group-item"><strong>Telefon:</strong> {{ appointment.phone|default:"-" }}</li>
+                    <li class="list-group-item"><strong>Halı Türü:</strong> {{ appointment.carpet_type|default:"-" }}</li>
+                    <li class="list-group-item"><strong>Açıklama:</strong> {{ carpet.description|default:"-" }}</li>
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,17 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Sanal ortam klasörü
+env/
+venv/
+
+# Django dosyaları
+*.sqlite3
+/staticfiles/
+/media/
+
+# Mac OS dosyaları
+.DS_Store

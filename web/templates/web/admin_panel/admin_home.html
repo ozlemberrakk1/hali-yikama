@@ -1,0 +1,29 @@
+{% extends 'web/base_admin.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Admin Paneli Anasayfa</h2>
+    <div class="row mt-3">
+        <div class="col-md-4">
+            <div class="card bg-primary text-white p-3 mb-3">
+                <h5> Randevular</h5>
+                <h3>{{ total_appointments }}</h3>
+                <a href="{% url 'admin_appointments' %}" class="btn btn-light btn-sm">Randevulara Git</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-success text-white p-3 mb-3">
+                <h5> Halıları Güncelle</h5>
+                <h3>{{ total_carpets }}</h3>
+                <a href="{% url 'admin_carpets' %}" class="btn btn-light btn-sm">Halılara Git</a>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card bg-warning text-dark p-3 mb-3">
+                <h5>Onay Bekleyen Yorumlar</h5>
+                <h3>{{ pending_comments }}</h3>
+                <a href="{% url 'admin_comments' %}" class="btn btn-dark btn-sm">Yorumlara Git</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

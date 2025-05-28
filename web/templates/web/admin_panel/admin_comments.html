@@ -1,0 +1,61 @@
+{% extends 'web/base_admin.html' %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Müşteri Yorumları</h2>
+    <table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>İsim</th>
+            <th>Yorum</th>
+            <th>Onay Durumu</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for comment in comments %}
+        <tr id="comment-row-{{ comment.id }}">
+            <td>{{ comment.name }}</td>  <!-- Modelde 'name' -->
+            <td>{{ comment.comment }}</td>  <!-- Modelde 'comment' -->
+            <td id="approval-status-{{ comment.id }}">
+                {% if comment.approved %}
+                    <span class="badge bg-success">Onaylandı</span>
+                {% else %}
+                    <span class="badge bg-warning text-dark">Beklemede</span>
+                {% endif %}
+            </td>
+            <td>
+                {% if not comment.approved %}
+                <button class="btn btn-success btn-sm approve-btn" data-comment-id="{{ comment.id }}">Onayla</button>
+                {% else %}
+                <span class="text-muted">—</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="4">Henüz yorum yok.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+
+<script>
+document.querySelectorAll('.approve-btn').forEach(button => {
+    button.addEventListener('click', function() {
+        const commentId = this.dataset.commentId;
+
+        fetch(`/admin-panel/comment/${commentId}/approve/`, {
+            method: 'POST',
+            headers: {'X-CSRFToken': '{{ csrf_token }}'},
+        }).then(res => res.json())
+          .then(data => {
+            if(data.success) {
+                document.getElementById(`approval-status-${commentId}`).innerHTML = '<span class="badge bg-success">Onaylandı</span>';
+                this.remove();
+            } else {
+                alert('Yorum onaylanamadı!');
+            }
+          });
+    });
+});
+</script>
+{% endblock %}

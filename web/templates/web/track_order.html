@@ -1,0 +1,42 @@
+{% extends 'web/base.html' %}
+
+{% block title %}Sipariş Takibi{% endblock %}
+
+{% block content %}
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold animate__animated animate__fadeInDown">Sipariş Takibi</h2>
+            <p class="text-muted animate__animated animate__fadeIn">Takip kodunuzu girerek halınızın durumunu öğrenin</p>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card p-4 shadow-lg rounded-3 animate__animated animate__fadeInUp">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <label for="tracking_code" class="form-label fw-semibold">Takip Kodu</label>
+                            <input type="text" name="tracking_code" id="tracking_code" class="form-control form-control-lg" placeholder="Örn: ABC123" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 btn-lg">
+                            <i class="bi bi-search"></i> Sorgula
+                        </button>
+                    </form>
+
+                    {% if order %}
+                    <div class="alert alert-success mt-4">
+                        <h5 class="mb-1">📦 Sipariş Durumu:</h5>
+                        <p><strong>{{ order.status }}</strong></p>
+                    </div>
+                    {% elif not_found %}
+                    <div class="alert alert-danger mt-4">
+                        Takip koduna ait sipariş bulunamadı.
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

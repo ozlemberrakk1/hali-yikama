@@ -1,0 +1,139 @@
+{% extends 'web/base.html' %}
+{% load static %}
+
+{% block title %}Anasayfa{% endblock %}
+
+{% block content %}
+<style>
+    .btn-randevu {
+        background-color: #f39c12;
+        border: 2px solid #e67e22;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        transition: background-color 0.3s, transform 0.3s ease-in-out;
+    }
+
+    .btn-randevu:hover {
+        background-color: #e67e22;
+        transform: scale(1.05);
+    }
+
+    .gallery-img {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Köpük Animasyonu */
+    .bubble-container {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        pointer-events: none;
+        z-index: 2;
+    }
+
+    .bubble {
+        position: absolute;
+        bottom: -60px;
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        animation: rise 7s infinite ease-in, move 5s infinite ease-in-out;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+    }
+
+    /* Köpüklerin yukarıya doğru yükselme animasyonu */
+    @keyframes rise {
+        0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+        100% { transform: translateY(-600px) rotate(360deg); opacity: 0; }
+    }
+
+    /* Köpüklerin dağılma animasyonu - Yönleri ve konumları rastgele yapılıyor */
+    @keyframes move {
+        0% { left: random(); top: random(); }
+        50% { left: random(); top: random(); }
+        100% { left: random(); top: random(); }
+    }
+
+    /* CSS için rastgele konum fonksiyonu */
+    .bubble:nth-child(1) { left: 10%; animation-delay: 0s; width: 40px; height: 40px; }
+    .bubble:nth-child(2) { left: 25%; animation-delay: 1s; width: 30px; height: 30px; }
+    .bubble:nth-child(3) { left: 40%; animation-delay: 2s; width: 50px; height: 50px; }
+    .bubble:nth-child(4) { left: 55%; animation-delay: 3s; width: 35px; height: 35px; }
+    .bubble:nth-child(5) { left: 70%; animation-delay: 4s; width: 45px; height: 45px; }
+    .bubble:nth-child(6) { left: 85%; animation-delay: 5s; width: 38px; height: 38px; }
+
+    .hero-section {
+        position: relative;
+        background-color: #b7f1b0;
+        z-index: 0;
+        overflow: hidden;
+    }
+
+    .hero-content {
+        position: relative;
+        z-index: 3;
+    }
+</style>
+
+<!-- HERO ALANI -->
+<section class="py-5 text-white text-center hero-section">
+    <div class="bubble-container">
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+        <div class="bubble"></div>
+    </div>
+
+    <div class="container hero-content">
+        <h1 class="display-4">Parlayan Temizlik, Güvenilir Hizmet</h1>
+        <p class="lead">Profesyonel halı yıkama ile evinize ferahlık katın</p>
+        <a href="{% url 'appointment' %}" class="btn btn-randevu btn-lg mt-3">
+            <i class="bi bi-calendar-check"></i> Randevu Al
+        </a>
+    </div>
+</section>
+
+<!-- Galeri -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Hizmetten Kareler</h2>
+            <p class="text-muted">Yüzlerce mutlu müşteriden sadece birkaç örnek</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-6">
+                <img src="{% static 'web/img/hali1.jpg' %}" class="gallery-img">
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'web/img/hali2.png' %}" class="gallery-img">
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'web/img/hali3.jpg' %}" class="gallery-img">
+            </div>
+            <div class="col-md-6">
+                <img src="{% static 'web/img/hali5.jpg' %}" class="gallery-img">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Yorum Yap Butonu -->
+<section class="py-3 text-center">
+    <div class="container">
+        <a href="{% url 'comments' %}" class="btn btn-outline-dark btn-lg mt-3 px-5 py-3 fw-bold">
+            <i class="bi bi-pencil-square"></i> Yorum Yap
+        </a>
+    </div>
+</section>
+
+{% endblock %}
