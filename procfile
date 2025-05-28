@@ -1,0 +1,1 @@
+web: gunicorn hali_yikama.wsgi:application

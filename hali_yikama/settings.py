@@ -77,19 +77,12 @@ WSGI_APPLICATION = 'hali_yikama.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 import os
 
+import dj_database_url
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': os.getenv('sql7.freesqldatabase.com'),
-        'PORT': os.getenv('3306', '3306'),
-        'NAME': os.getenv('sql7781825'),
-        'USER': os.getenv('sql7781825'),
-        'PASSWORD': os.getenv('AtUvU5iuHg'),
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
-    }
+    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
 }
+
+
 import pymysql
 pymysql.install_as_MySQLdb()
 
