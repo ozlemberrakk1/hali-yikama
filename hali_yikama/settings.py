@@ -31,6 +31,9 @@ ALLOWED_HOSTS = ['hali-yikama-7190.onrender.com']
 
 
 # Application definition
+CSRF_TRUSTED_ORIGINS = [
+    "https://hali-yikama-7190.onrender.com",
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
