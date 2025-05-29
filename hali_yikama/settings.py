@@ -27,7 +27,8 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure--tl_xystdtr87w
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DJANGO_DEBUG', '') == 'True'
 
-ALLOWED_HOSTS = ["https://hali-yikama-7190.onrender.com"]
+ALLOWED_HOSTS = ['hali-yikama-7190.onrender.com']
+
 
 # Application definition
 
