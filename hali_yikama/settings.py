@@ -18,15 +18,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
-
+import os
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--tl_xystdtr87w%uanqmm8k5h1go&&2=7aeccrus@n%f+8-3$x'
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure--tl_xystdtr87w%uanqmm8k5h1go&&2=7aeccrus@n%f+8-3$x')
+
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DJANGO_DEBUG', '') == 'True'
 
-ALLOWED_HOSTS = ["*"]
-
+ALLOWED_HOSTS = ["https://hali-yikama-7190.onrender.com"]
 
 # Application definition
 
@@ -79,8 +80,16 @@ import os
 
 import dj_database_url
 DATABASES = {
-    'default': dj_database_url.config(default=os.getenv('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'haliyikamadb',
+        'USER': 'guneshaliyikama',
+        'PASSWORD': '7gKBbXROA1i7cmZA7ginD2oEK43Xcj3B',
+        'HOST': 'dpg-d0rq7q63jp1c73e159i0-a.oregon-postgres.render.com',
+        'PORT': '5432',
+    }
 }
+
 
 
 import pymysql
