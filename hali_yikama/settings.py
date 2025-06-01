@@ -25,9 +25,9 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure--tl_xystdtr87w
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_DEBUG', '') == 'True'
+DEBUG = True
 
-ALLOWED_HOSTS = ['hali-yikama-7190.onrender.com']
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -85,19 +85,20 @@ import os
 import dj_database_url
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'haliyikamadb',
-        'USER': 'guneshaliyikama',
-        'PASSWORD': '7gKBbXROA1i7cmZA7ginD2oEK43Xcj3B',
-        'HOST': 'dpg-d0rq7q63jp1c73e159i0-a.oregon-postgres.render.com',
-        'PORT': '5432',
+        'USER': 'root',
+        'PASSWORD': '237725',
+        'HOST': 'localhost',  # veya uzaktaki sunucu adresi
+        'PORT': '3306',
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+        },
     }
 }
 
 
 
-import pymysql
-pymysql.install_as_MySQLdb()
 
 
 
