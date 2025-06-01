@@ -86,10 +86,10 @@ import dj_database_url
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'haliyikamadb',
-        'USER': 'root',
-        'PASSWORD': '237725',
-        'HOST': 'localhost',  # veya uzaktaki sunucu adresi
+        'NAME': 'guneshaliyikamaa$haliyikamadb',
+        'USER': 'guneshaliyikamaa',
+        'PASSWORD': '237725Brrk.',
+        'HOST': 'guneshaliyikamaa.mysql.pythonanywhere-services.com',  # veya uzaktaki sunucu adresi
         'PORT': '3306',
         'OPTIONS': {
             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
